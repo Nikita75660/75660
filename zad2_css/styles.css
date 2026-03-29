@@ -27,7 +27,7 @@ h1, h2, h3 {
     margin-top: 0;
 }
 h2 {
-    color: #15c712;
+    color: #2e7d2d;
 }
 a {
     color: #15c712;
@@ -46,7 +46,7 @@ footer {
     text-align: center;
     margin-top: 30px;
     padding: 10px;
-    background-color: #15c712;
+    background-color: #2e7d2d;
     color: green;
     border-radius: 10px;
 }
