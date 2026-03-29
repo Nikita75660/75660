@@ -1,14 +1,14 @@
 body {
     font-family: Arial, Helvetica, sans-serif;
-    background-color: #f4f9f4;
-    color: #333;
+    background-color: #15c712;
+    color: #15c712;
     margin: 0;
     padding: 20px;
 }
 header {
     text-align: center;
-    background-color: #2e8b57;
-    color: white;
+    background-color: #15c712;
+    color: green;
     padding: 20px;
     border-radius: 10px;
 }
@@ -20,17 +20,17 @@ section {
     background-color: white;
     margin-top: 20px;
     padding: 15px;
-    border-left: 5px solid #2e8b57;
+    border-left: 5px solid #15c712;
     border-radius: 8px;
 }
 h1, h2, h3 {
     margin-top: 0;
 }
 h2 {
-    color: #2e8b57;
+    color: #15c712;
 }
 a {
-    color: #2e8b57;
+    color: #15c712;
     text-decoration: none;
 }
 a:hover {
@@ -46,7 +46,7 @@ footer {
     text-align: center;
     margin-top: 30px;
     padding: 10px;
-    background-color: #2e8b57;
-    color: white;
+    background-color: #15c712;
+    color: green;
     border-radius: 10px;
 }
