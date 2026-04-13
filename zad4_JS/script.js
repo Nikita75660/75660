@@ -22,7 +22,7 @@ function toggleProjects() {
     }
 }
 function toggleUmiejętności() {
-    const section = document.getElementById("Umiejętności");
+    const section = document.getElementById("skills");
 
     if (section.style.display === "none") {
         section.style.display = "block";
@@ -31,7 +31,7 @@ function toggleUmiejętności() {
     }
 }
 function toggleDoświadczenie() {
-    const section = document.getElementById("Doświadczenie");
+    const section = document.getElementById("experience");
 
     if (section.style.display === "none") {
         section.style.display = "block";
@@ -40,7 +40,7 @@ function toggleDoświadczenie() {
     }
 }
 function toggleEdukacja() {
-    const section = document.getElementById("Edukacja");
+    const section = document.getElementById("education");
 
     if (section.style.display === "none") {
         section.style.display = "block";
