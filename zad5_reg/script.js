@@ -19,7 +19,7 @@ document.getElementById("formularz").addEventListener("submit", function(e) {
     document.getElementById("imieError").textContent = "Podaj imię";
     poprawne = false;
   } else if (!regexImie.test(imie)) {
-    document.getElementById("imieError").textContent = "Imię nie może zawierać cyfr";
+    document.getElementById("imieError").textContent = "Imię nie może zawierać cyfr i spacji";
     poprawne = false;
   }
 
@@ -28,7 +28,7 @@ document.getElementById("formularz").addEventListener("submit", function(e) {
     document.getElementById("nazwiskoError").textContent = "Podaj nazwisko";
     poprawne = false;
   } else if (!regexImie.test(nazwisko)) {
-    document.getElementById("nazwiskoError").textContent = "Nazwisko nie może zawierać cyfr";
+    document.getElementById("nazwiskoError").textContent = "Nazwisko nie może zawierać cyfr i spacji";
     poprawne = false;
   }
 
