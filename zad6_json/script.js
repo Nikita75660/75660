@@ -1,11 +1,23 @@
+
 fetch("data.json")
-    .then(response => response.json())
+    .then(res => res.json())
     .then(data => {
+        loadAbout(data.about);
+        loadEducation(data.education);
         loadSkills(data.skills);
         loadProjects(data.projects);
         loadExperience(data.experience);
     })
-    .catch(error => console.error("Błąd ładowania JSON:", error));
+    .catch(err => console.error("Błąd JSON:", err));
+
+
+function loadAbout(text) {
+    document.getElementById("about").textContent = text;
+}
+
+function loadEducation(text) {
+    document.getElementById("education-text").textContent = text;
+}
 
 function loadSkills(skills) {
     const ul = document.getElementById("skills-list");
@@ -27,10 +39,10 @@ function loadProjects(projects) {
     });
 }
 
-function loadExperience(experiences) {
+function loadExperience(exps) {
     const container = document.getElementById("experience-list");
 
-    experiences.forEach(exp => {
+    exps.forEach(exp => {
         const article = document.createElement("article");
 
         article.innerHTML = `
@@ -42,56 +54,25 @@ function loadExperience(experiences) {
         container.appendChild(article);
     });
 }
+
+
+function toggle(id) {
+    const el = document.getElementById(id);
+
+    if (el.style.display === "none" || el.style.display === "") {
+        el.style.display = "block";
+    } else {
+        el.style.display = "none";
+    }
+}
+
 let isGreen = true;
 
 function changeTheme() {
-    const link = document.querySelector("link");
+    const link = document.querySelector('link[rel="stylesheet"]');
 
-    if (isGreen) {
-        link.href = "red.css";
-    } else {
-        link.href = "green.css";
-    }
-
+    link.href = isGreen ? "red.css" : "green.css";
     isGreen = !isGreen;
-}
-
-function toggleProjects() {
-    const section = document.getElementById("projects");
-
-    if (section.style.display === "none") {
-        section.style.display = "block";
-    } else {
-        section.style.display = "none";
-    }
-}
-function toggleUmiejetnosci() {
-    const section = document.getElementById("skills");
-
-    if (section.style.display === "none") {
-        section.style.display = "block";
-    } else {
-        section.style.display = "none";
-    }
-}
-
-function toggleDoswiadczenie() {
-    const section = document.getElementById("experience");
-
-    if (section.style.display === "none") {
-        section.style.display = "block";
-    } else {
-        section.style.display = "none";
-    }
-}
-function toggleEdukacja() {
-    const section = document.getElementById("education");
-
-    if (section.style.display === "none") {
-        section.style.display = "block";
-    } else {
-        section.style.display = "none";
-    }
 }
 document.getElementById("formularz").addEventListener("submit", function(e) {
     e.preventDefault();
