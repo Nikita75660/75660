@@ -65,7 +65,7 @@ function toggleProjects() {
         section.style.display = "none";
     }
 }
-function toggleUmiejętności() {
+function toggleUmiejetnosci() {
     const section = document.getElementById("skills");
 
     if (section.style.display === "none") {
@@ -74,7 +74,8 @@ function toggleUmiejętności() {
         section.style.display = "none";
     }
 }
-function toggleDoświadczenie() {
+
+function toggleDoswiadczenie() {
     const section = document.getElementById("experience");
 
     if (section.style.display === "none") {
