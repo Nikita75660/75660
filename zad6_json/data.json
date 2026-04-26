@@ -1,0 +1,25 @@
+{
+  "skills": [
+    "C#",
+    "Podstawy HTML",
+    "Podstawy Python",
+    "TouchDesigner",
+    "Aplikacje Adobe"
+  ],
+  "projects": [
+    "Strona portfolio",
+    "Aplikacja w C#"
+  ],
+  "experience": [
+    {
+      "title": "Studia na uczelni Vistula",
+      "year": "2025",
+      "desc": "Tworzenie stron internetowych oraz testowanie aplikacji."
+    },
+    {
+      "title": "Freelancer",
+      "year": "2023–2024",
+      "desc": "Edycja obrazów dla klientów."
+    }
+  ]
+}
