@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <title>Nikita Korchahin 75660 - CV</title>
+    <link rel="stylesheet" href="green.css">
+</head>
+<body>
+
+<header>
+    <h1>Nikita Korchahin 75660</h1>
+    <img src="photo.jpg" alt="Zdjęcie Nikity Korchahina" width="150">
+</header>
+
+<main>
+    <button class="btn" onclick="changeTheme()">Zmień motyw</button>
+
+    <section>
+        <h2>Kontakt</h2>
+        <p>Email: <a href="mailto:nkorcha1@stu.vistula.edu.pl">nkorcha1@stu.vistula.edu.pl</a></p>
+        <p>Telefon: <a href="tel:+48575176801">+48 575 176 801</a></p>
+        <p>Miasto: Warszawa</p>
+        <p>
+            GitHub: 
+            <a href="https://github.com/Nikita75660" target="_blank" rel="noopener noreferrer">
+                github.com/Nikita75660
+            </a>
+        </p>
+        <p>
+            LinkedIn: 
+            <a href="https://www.linkedin.com/in/nikita-korchahin-3972bb232/" target="_blank" rel="noopener noreferrer">
+                linkedin.com/in/nikita-korchahin
+            </a>
+        </p>
+    </section>
+
+    <section>
+        <h2>O mnie</h2>
+        <p>
+            Uczę się w Polsce, na uczelni Vistula, na kierunku informatyka. 
+            Interesuję się programowaniem i stale rozwijam swoje umiejętności.
+        </p>
+    </section>
+
+    <!-- UMIEJĘTNOŚCI -->
+    <button class="btn" onclick="toggleUmiejetnosci()">Pokaż / Ukryj Umiejętności</button>
+    <section id="skills">
+        <h2>Umiejętności</h2>
+        <ul id="skills-list"></ul>
+    </section>
+
+    <!-- DOŚWIADCZENIE -->
+    <button class="btn" onclick="toggleDoswiadczenie()">Pokaż / Ukryj Doświadczenie</button>
+    <section id="experience">
+        <h2>Doświadczenie</h2>
+        <div id="experience-list"></div>
+    </section>
+
+    <!-- EDUKACJA (можно оставить статичной) -->
+    <button class="btn" onclick="toggleEdukacja()">Pokaż / Ukryj Edukację</button>
+    <section id="education">
+        <h2>Edukacja</h2>
+        <p>Vistula – Informatyka (2025–obecnie)</p>
+    </section>
+
+    <!-- PROJEKTY -->
+    <button class="btn" onclick="toggleProjects()">Pokaż / Ukryj Projekty</button>
+    <section id="projects">
+        <h2>Projekty</h2>
+        <ul id="projects-list"></ul>
+    </section>
+
+</main>
+
+<!-- FORMULARZ -->
+<section id="formularzKontaktowy">
+    <h2>Formularz kontaktowy</h2>
+
+    <form id="formularz" novalidate>
+        <input type="text" id="imie" placeholder="Imię">
+        <div class="error" id="imieError"></div>
+
+        <input type="text" id="nazwisko" placeholder="Nazwisko">
+        <div class="error" id="nazwiskoError"></div>
+
+        <input type="email" id="email" placeholder="Email">
+        <div class="error" id="emailError"></div>
+
+        <textarea id="wiadomosc" placeholder="Wiadomość"></textarea>
+        <div class="error" id="wiadomoscError"></div>
+
+        <button type="submit" class="btn">Wyślij</button>
+    </form>
+</section>
+
+<footer>
+    <p>© 2026 Nikita Korchahin</p>
+</footer>
+
+<script src="script.js"></script>
+
+</body>
+</html>
