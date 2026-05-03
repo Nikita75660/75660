@@ -48,7 +48,9 @@ function loadProjects(projects) {
         li.textContent = project;
 
         const btn = document.createElement("button");
-        btn.textContent = "❌";
+        btn.textContent = "✖";
+        btn.classList.add("delete-btn");
+
         btn.onclick = () => deleteProject(index);
 
         li.appendChild(btn);
