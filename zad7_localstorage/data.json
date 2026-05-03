@@ -1,0 +1,27 @@
+{
+  "about": "Uczę się w Polsce na uczelni Vistula na kierunku informatyka. Interesuję się programowaniem i stale rozwijam swoje umiejętności.",
+  "education": "Vistula – Informatyka (2025–obecnie)",
+  "skills": [
+    "C#",
+    "Podstawy HTML",
+    "Podstawy Python",
+    "TouchDesigner",
+    "Aplikacje Adobe"
+  ],
+  "projects": [
+    "Strona portfolio",
+    "Aplikacja w C#"
+  ],
+  "experience": [
+    {
+      "title": "Studia na uczelni Vistula",
+      "year": "2025",
+      "desc": "Tworzenie stron internetowych oraz testowanie aplikacji."
+    },
+    {
+      "title": "Freelancer",
+      "year": "2023–2024",
+      "desc": "Edycja obrazów dla klientów."
+    }
+  ]
+}
