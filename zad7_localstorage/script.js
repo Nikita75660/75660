@@ -10,6 +10,13 @@ fetch("data.json")
     })
     .catch(err => console.error("Błąd JSON:", err));
 
+window.addEventListener("DOMContentLoaded", () => {
+    const savedTheme = localStorage.getItem("theme");
+
+    if (savedTheme) {
+        document.querySelector('link[rel="stylesheet"]').href = savedTheme + ".css";
+    }
+});
 
 function loadAbout(text) {
     document.getElementById("about").textContent = text;
@@ -66,14 +73,18 @@ function toggle(id) {
     }
 }
 
-let isGreen = true;
-
 function changeTheme() {
     const link = document.querySelector('link[rel="stylesheet"]');
 
-    link.href = isGreen ? "red.css" : "green.css";
-    isGreen = !isGreen;
+    if (link.href.includes("green.css")) {
+        link.href = "red.css";
+        localStorage.setItem("theme", "red");
+    } else {
+        link.href = "green.css";
+        localStorage.setItem("theme", "green");
+    }
 }
+
 document.getElementById("formularz").addEventListener("submit", function(e) {
     e.preventDefault();
 
