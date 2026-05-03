@@ -1,3 +1,4 @@
+let originalProjects = [];
 let projectsData = JSON.parse(localStorage.getItem("projects")) || [];
 fetch("data.json")
     .then(res => res.json())
@@ -5,8 +6,9 @@ fetch("data.json")
         loadAbout(data.about);
         loadEducation(data.education);
         loadSkills(data.skills);
-        loadProjects(data.projects);
         loadExperience(data.experience);
+        originalProjects = data.projects;
+        loadProjects(originalProjects);
     })
     .catch(err => console.error("Błąd JSON:", err));
 
@@ -63,6 +65,7 @@ function loadProjects(projectsFromJSON) {
     });
 }
 
+
 function addProject(text) {
     if (!text.trim()) return;
 
@@ -72,7 +75,7 @@ function addProject(text) {
 
     localStorage.setItem("projects", JSON.stringify(saved));
 
-    loadProjects([]);
+    loadProjects(originalProjects);
 }
 
 function deleteProject(index) {
@@ -82,9 +85,8 @@ function deleteProject(index) {
 
     localStorage.setItem("projects", JSON.stringify(saved));
 
-    loadProjects([]);
+    loadProjects(originalProjects);
 }
-
 
 function loadExperience(exps) {
     const container = document.getElementById("experience-list");
