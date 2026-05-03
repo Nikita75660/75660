@@ -36,44 +36,54 @@ function loadSkills(skills) {
     });
 }
 
-function loadProjects(projects) {
+function loadProjects(projectsFromJSON) {
     const ul = document.getElementById("projects-list");
 
-    const dataToUse = projectsData.length ? projectsData : projects;
+    const saved = JSON.parse(localStorage.getItem("projects")) || [];
+
+    const allProjects = [...projectsFromJSON, ...saved];
 
     ul.innerHTML = "";
 
-    dataToUse.forEach((project, index) => {
+    allProjects.forEach((project, index) => {
         const li = document.createElement("li");
         li.textContent = project;
 
-        const btn = document.createElement("button");
-        btn.textContent = "✖";
-        btn.classList.add("delete-btn");
+        if (index >= projectsFromJSON.length) {
+            const btn = document.createElement("button");
+            btn.textContent = "✖";
+            btn.classList.add("delete-btn");
 
-        btn.onclick = () => deleteProject(index);
+            btn.onclick = () => deleteProject(index - projectsFromJSON.length);
 
-        li.appendChild(btn);
+            li.appendChild(btn);
+        }
+
         ul.appendChild(li);
     });
 }
 
 function addProject(text) {
-    projectsData.push(text);
+    if (!text.trim()) return;
 
-    localStorage.setItem("projects", JSON.stringify(projectsData));
+    let saved = JSON.parse(localStorage.getItem("projects")) || [];
 
-    loadProjects(projectsData);
+    saved.push(text);
+
+    localStorage.setItem("projects", JSON.stringify(saved));
+
+    loadProjects([]);
 }
+
 function deleteProject(index) {
-    projectsData.splice(index, 1);
+    let saved = JSON.parse(localStorage.getItem("projects")) || [];
 
-    localStorage.setItem("projects", JSON.stringify(projectsData));
+    saved.splice(index, 1);
 
-    loadProjects(projectsData);
+    localStorage.setItem("projects", JSON.stringify(saved));
+
+    loadProjects([]);
 }
-
-
 
 
 function loadExperience(exps) {
