@@ -1,4 +1,4 @@
-
+let projectsData = JSON.parse(localStorage.getItem("projects")) || [];
 fetch("data.json")
     .then(res => res.json())
     .then(data => {
@@ -39,12 +39,40 @@ function loadSkills(skills) {
 function loadProjects(projects) {
     const ul = document.getElementById("projects-list");
 
-    projects.forEach(project => {
+    const dataToUse = projectsData.length ? projectsData : projects;
+
+    ul.innerHTML = "";
+
+    dataToUse.forEach((project, index) => {
         const li = document.createElement("li");
         li.textContent = project;
+
+        const btn = document.createElement("button");
+        btn.textContent = "❌";
+        btn.onclick = () => deleteProject(index);
+
+        li.appendChild(btn);
         ul.appendChild(li);
     });
 }
+
+function addProject(text) {
+    projectsData.push(text);
+
+    localStorage.setItem("projects", JSON.stringify(projectsData));
+
+    loadProjects(projectsData);
+}
+function deleteProject(index) {
+    projectsData.splice(index, 1);
+
+    localStorage.setItem("projects", JSON.stringify(projectsData));
+
+    loadProjects(projectsData);
+}
+
+
+
 
 function loadExperience(exps) {
     const container = document.getElementById("experience-list");
