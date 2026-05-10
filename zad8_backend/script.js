@@ -171,7 +171,33 @@ document.getElementById("formularz").addEventListener("submit", function(e) {
         poprawne = false;
     }
 
-    if (poprawne) {
-        alert("Wiadomość została wysłana (frontend)");
-    }
+if (poprawne) {
+
+    fetch("https://nikita-75660-default-rtdb.europe-west1.firebasedatabase.app/messages.json", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+            imie: imie,
+            nazwisko: nazwisko,
+            email: email,
+            wiadomosc: wiadomosc,
+            data: new Date().toISOString()
+        })
+    })
+    .then(response => {
+        if (response.ok) {
+            alert("Wiadomość została wysłana do backendu!");
+            document.getElementById("formularz").reset();
+        } else {
+            alert("Błąd wysyłania");
+        }
+    })
+    .catch(error => {
+        console.error(error);
+        alert("Błąd połączenia");
+    });
+
+}
 });
