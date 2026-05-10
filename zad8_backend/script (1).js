@@ -1,0 +1,177 @@
+let originalProjects = [];
+let projectsData = JSON.parse(localStorage.getItem("projects")) || [];
+fetch("data.json")
+    .then(res => res.json())
+    .then(data => {
+        loadAbout(data.about);
+        loadEducation(data.education);
+        loadSkills(data.skills);
+        loadExperience(data.experience);
+        originalProjects = data.projects;
+        loadProjects(originalProjects);
+    })
+    .catch(err => console.error("Błąd JSON:", err));
+
+window.addEventListener("DOMContentLoaded", () => {
+    const savedTheme = localStorage.getItem("theme");
+
+    if (savedTheme) {
+        document.querySelector('link[rel="stylesheet"]').href = savedTheme + ".css";
+    }
+});
+
+function loadAbout(text) {
+    document.getElementById("about").textContent = text;
+}
+
+function loadEducation(text) {
+    document.getElementById("education-text").textContent = text;
+}
+
+function loadSkills(skills) {
+    const ul = document.getElementById("skills-list");
+
+    skills.forEach(skill => {
+        const li = document.createElement("li");
+        li.textContent = skill;
+        ul.appendChild(li);
+    });
+}
+
+function loadProjects(projectsFromJSON) {
+    const ul = document.getElementById("projects-list");
+
+    const saved = JSON.parse(localStorage.getItem("projects")) || [];
+
+    const allProjects = [...projectsFromJSON, ...saved];
+
+    ul.innerHTML = "";
+
+    allProjects.forEach((project, index) => {
+        const li = document.createElement("li");
+        li.textContent = project;
+
+        if (index >= projectsFromJSON.length) {
+            const btn = document.createElement("button");
+            btn.textContent = "✖";
+            btn.classList.add("delete-btn");
+
+            btn.onclick = () => deleteProject(index - projectsFromJSON.length);
+
+            li.appendChild(btn);
+        }
+
+        ul.appendChild(li);
+    });
+}
+
+
+function addProject(text) {
+    if (!text.trim()) return;
+
+    let saved = JSON.parse(localStorage.getItem("projects")) || [];
+
+    saved.push(text);
+
+    localStorage.setItem("projects", JSON.stringify(saved));
+
+    loadProjects(originalProjects);
+}
+
+function deleteProject(index) {
+    let saved = JSON.parse(localStorage.getItem("projects")) || [];
+
+    saved.splice(index, 1);
+
+    localStorage.setItem("projects", JSON.stringify(saved));
+
+    loadProjects(originalProjects);
+}
+
+function loadExperience(exps) {
+    const container = document.getElementById("experience-list");
+
+    exps.forEach(exp => {
+        const article = document.createElement("article");
+
+        article.innerHTML = `
+            <h3>${exp.title}</h3>
+            <p>${exp.year}</p>
+            <p>${exp.desc}</p>
+        `;
+
+        container.appendChild(article);
+    });
+}
+
+
+function toggle(id) {
+    const el = document.getElementById(id);
+
+    if (el.style.display === "none" || el.style.display === "") {
+        el.style.display = "block";
+    } else {
+        el.style.display = "none";
+    }
+}
+
+function changeTheme() {
+    const link = document.querySelector('link[rel="stylesheet"]');
+
+    if (link.href.includes("green.css")) {
+        link.href = "red.css";
+        localStorage.setItem("theme", "red");
+    } else {
+        link.href = "green.css";
+        localStorage.setItem("theme", "green");
+    }
+}
+
+document.getElementById("formularz").addEventListener("submit", function(e) {
+    e.preventDefault();
+
+    document.querySelectorAll(".error").forEach(el => el.textContent = "");
+
+    let poprawne = true;
+
+    const imie = document.getElementById("imie").value.trim();
+    const nazwisko = document.getElementById("nazwisko").value.trim();
+    const email = document.getElementById("email").value.trim();
+    const wiadomosc = document.getElementById("wiadomosc").value.trim();
+
+    const regexImie = /^[A-Za-zÀ-ž]+$/;
+    const regexEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+    if (!imie) {
+        document.getElementById("imieError").textContent = "Podaj imię";
+        poprawne = false;
+    } else if (!regexImie.test(imie)) {
+        document.getElementById("imieError").textContent = "Imię może zawierać tylko litery";
+        poprawne = false;
+    }
+
+    if (!nazwisko) {
+        document.getElementById("nazwiskoError").textContent = "Podaj nazwisko";
+        poprawne = false;
+    } else if (!regexImie.test(nazwisko)) {
+        document.getElementById("nazwiskoError").textContent = "Nazwisko może zawierać tylko litery";
+        poprawne = false;
+    }
+
+    if (!email) {
+        document.getElementById("emailError").textContent = "Podaj email";
+        poprawne = false;
+    } else if (!regexEmail.test(email)) {
+        document.getElementById("emailError").textContent = "Niepoprawny email";
+        poprawne = false;
+    }
+
+    if (!wiadomosc) {
+        document.getElementById("wiadomoscError").textContent = "Podaj wiadomość";
+        poprawne = false;
+    }
+
+    if (poprawne) {
+        alert("Wiadomość została wysłana (frontend)");
+    }
+});
